@@ -1,7 +1,7 @@
 # Advanced-Machine-Learning-Projects (incomplete)
 Projects for the course Advanced Machine Learning. In this repository, currently not all files are available, and so end-to-end prediction is not possible with this code. As a result, for now, this repository presents only tools that can be leveraged in similar tasks.
 
-## Task 1 (Ran - Prediction of patient age based on manipulated brain-scan latent features
+## Task 1 - Prediction of patient age based on manipulated brain-scan latent features
 - Rank 25/179
 - Public-score: 0.750; Private-score: 0.713
 
@@ -22,3 +22,22 @@ Using neural networks unknown to us, features were extracted from brain-scan ima
     <details><summary>tools.py</summary> Presents a function through which a part of our code is parallelized. Simply in order to speed up training for cross validation predictions.</details>
 
 ## Task 2 - Classifification of raw ECG data
+- Rank 3/168
+- Public-score: 0.858; Private-score: 0.856
+
+Given raw ECG data, our task was to classify data between 4 classes. These classes were imbalanced. Our stages of data processing were the following: idintifying and inverting inverted signals (generated due to misplacement of electrodes), extracting heartbeat templates, corresponding local hertbeat frequencies and QRS locations. To make our predictions, from the original signals and from this extracted information, we extracted features on which we trained boosted models. 
+
+The feature extracted are seperated into three categories:
+- Signal features: general features that can be extracted from any signal
+- Expert features: ECG specific features
+- Learned features: features extracted via a neural network framework. 
+
+In this repository, only the third approach is currently available, and so the same accuracies can not be accomplished with this code alone.
+
+After features are extracted, all features are combined, after which we perform feature extraction and final train a model to make predictions.
+
+### Code
+- __ExtendedNet.py__: In this file, the neural network class "ExtendedNet" is available. This neural network takes the entire ECG sequence, of an arbitrary length and generates one feature vector. This network was trained by applying an additional linear layer at the end to perform the classification. The Neural Netowrk architecture consists of a residual, bottle-neck 1D-convolutional architecture, which outputs a seuqence with a reduced lenght but higher dimensionality, followed by a bi-directional LSTM and a deep fully-connected block.
+- __ShortNet.py__: Using this architecture, we were not able to generate meaningful features. Further research would need to be done to leverege this architecture. The code consists of a lot of uncommented code, representing different strategies. The different strategies are the following. Apply LSTM layer on individual heartbeat templates to extract heartbeat features; then pass the resulting sequence of these heartbeat features through some final LSTM architecture. Different architectures were tried out. Alternatively we tried to leverage expert heartbeat features and then pass those through the final LSTM block.
+- __train.py__: A function which guides the training of "ExtendedNet"
+
