@@ -2,13 +2,15 @@
 Projects for the course Advanced Machine Learning. In this repository, currently not all files are available, and so end-to-end prediction is not possible with this code. As a result, for now, this repository presents only tools that can be leveraged in similar tasks.
 
 ## Task 1 - Prediction of patient age based on manipulated brain-scan latent features
-<details><summary>Expand</summary>
+
 - Rank 25/179
 - Public-score: 0.750; Private-score: 0.713
 
 Using neural networks unknown to us, features were extracted from brain-scan images. Additionaly, noise was added to certain datapoints, some features were duplicated, some useless features were added, and some elements of data points were entirely removed. The chritical pre-processing tasks were imputation and feature selection.
 
 ### Code
+<details><summary>Expand</summary>
+    
 - __imputer_gridsearch.py__: A framework to compare imputation strategies. CatBoostRegressor was used to evalutate the resulting data.
 - __model_gridsearch.py__: A framework to select the most optimal model hyperparameters. Framework is set-up to split the search up into multiple runs. Necessary due to the magnitude of the search. In its current state, the function is set-up to search for XGBoost hyperparameters, however, the same framework can be used for any scikit-learn-compatible model.
 
@@ -24,7 +26,6 @@ Using neural networks unknown to us, features were extracted from brain-scan ima
 </details>
 
 ## Task 2 - Classifification of raw ECG data
-<details><summary>Expand</summary>
 - Rank 3/168
 - Public-score: 0.858; Private-score: 0.856
 
@@ -40,6 +41,8 @@ In this repository, only the third approach is currently available, and so the s
 After features are extracted, all features are combined, after which we perform feature extraction and final train a model to make predictions.
 
 ### Code
+<details><summary>Expand</summary> 
+    
 - __ExtendedNet.py__: In this file, the neural network class "ExtendedNet" is available. This neural network takes the entire ECG sequence, of an arbitrary length and generates one feature vector. This network was trained by applying an additional linear layer at the end to perform the classification. The Neural Netowrk architecture consists of a residual, bottle-neck 1D-convolutional architecture, which outputs a seuqence with a reduced lenght but higher dimensionality, followed by a bi-directional LSTM and a deep fully-connected block.
 - __ShortNet.py__: Using this architecture, we were not able to generate meaningful features. Further research would need to be done to leverege this architecture. The code consists of a lot of uncommented code, representing different strategies. The different strategies are the following. Apply LSTM layer on individual heartbeat templates to extract heartbeat features; then pass the resulting sequence of these heartbeat features through some final LSTM architecture. Different architectures were tried out. Alternatively we tried to leverage expert heartbeat features and then pass those through the final LSTM block.
 - __train.py__: A function which guides the training of "ExtendedNet"
