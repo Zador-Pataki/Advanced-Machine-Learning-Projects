@@ -2,6 +2,7 @@
 Projects for the course Advanced Machine Learning. In this repository, currently not all files are available, and so end-to-end prediction is not possible with this code. As a result, for now, this repository presents only tools that can be leveraged in similar tasks.
 
 ## Task 1 - Prediction of patient age based on manipulated brain-scan latent features
+<details><summary>Expand</summary>
 - Rank 25/179
 - Public-score: 0.750; Private-score: 0.713
 
@@ -20,8 +21,10 @@ Using neural networks unknown to us, features were extracted from brain-scan ima
     <details><summary>stacking_cv.py</summary> Like "smart_stacking.py", this code combines outcomes of "get_cv_data.py" to evalutate cross validation scores of various stacking combinations.</details>
     
     <details><summary>tools.py</summary> Presents a function through which a part of our code is parallelized. Simply in order to speed up training for cross validation predictions.</details>
+</details>
 
 ## Task 2 - Classifification of raw ECG data
+<details><summary>Expand</summary>
 - Rank 3/168
 - Public-score: 0.858; Private-score: 0.856
 
@@ -40,4 +43,5 @@ After features are extracted, all features are combined, after which we perform 
 - __ExtendedNet.py__: In this file, the neural network class "ExtendedNet" is available. This neural network takes the entire ECG sequence, of an arbitrary length and generates one feature vector. This network was trained by applying an additional linear layer at the end to perform the classification. The Neural Netowrk architecture consists of a residual, bottle-neck 1D-convolutional architecture, which outputs a seuqence with a reduced lenght but higher dimensionality, followed by a bi-directional LSTM and a deep fully-connected block.
 - __ShortNet.py__: Using this architecture, we were not able to generate meaningful features. Further research would need to be done to leverege this architecture. The code consists of a lot of uncommented code, representing different strategies. The different strategies are the following. Apply LSTM layer on individual heartbeat templates to extract heartbeat features; then pass the resulting sequence of these heartbeat features through some final LSTM architecture. Different architectures were tried out. Alternatively we tried to leverage expert heartbeat features and then pass those through the final LSTM block.
 - __train.py__: A function which guides the training of "ExtendedNet"
+</detials>
 
