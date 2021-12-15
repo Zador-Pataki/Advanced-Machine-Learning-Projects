@@ -3,7 +3,7 @@ Projects for the course Advanced Machine Learning. In this repository, currently
 
 ## Task 1 (Ran - Prediction of patient age based on manipulated brain-scan latent features
 - Rank 25/179
-- Public-score: 0.750; Prive-score: 0.713
+- Public-score: 0.750; Private-score: 0.713
 
 Using neural networks unknown to us, features were extracted from brain-scan images. Additionaly, noise was added to certain datapoints, some features were duplicated, some useless features were added, and some elements of data points were entirely removed. The chritical pre-processing tasks were imputation and feature selection.
 
